@@ -9,10 +9,10 @@ import javax.persistence.Id;
 
 import com.devsuperior.edu.backend.entities.Product;
 
-public class ProductDTO implements Serializable{
+public class ProductDTO implements Serializable {
 
     private static final long serialVersionUID = 1L;
-    
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -23,6 +23,14 @@ public class ProductDTO implements Serializable{
 
     public ProductDTO() {
 
+    }
+
+    public ProductDTO(Long id, String name, Double price, String description, String imageUri) {
+        this.id = id;
+        this.name = name;
+        this.price = price;
+        this.description = description;
+        this.imageUri = imageUri;
     }
 
     public ProductDTO(Product entity) {
@@ -80,8 +88,8 @@ public class ProductDTO implements Serializable{
         if (!(o instanceof ProductDTO)) {
             return false;
         }
-        ProductDTO product = (ProductDTO) o;
-        return Objects.equals(id, product.id);
+        ProductDTO productDTO = (ProductDTO) o;
+        return Objects.equals(id, productDTO.id);
     }
 
     @Override
