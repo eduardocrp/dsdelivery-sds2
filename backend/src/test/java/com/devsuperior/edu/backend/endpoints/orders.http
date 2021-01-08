@@ -1,2 +1,24 @@
-### Test find all
+### Test find all pending orders
 GET http://localhost:8080/orders
+
+### Test post new order
+POST http://localhost:8080/orders
+Content-Type: application/json
+
+{
+    "address": "Avenida Paulista, 1500",
+    "latitude": -23.56168,
+    "longitude": -46.656139,
+    "status": "PENDING",
+    "products": [
+        {
+        "id": 2
+        },
+        {
+        "id": 5
+        }
+    ]
+}
+
+### Test set delivered order
+PUT http://localhost:8080/orders/3/delivered

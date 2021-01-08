@@ -98,6 +98,9 @@ public class OrderDTO implements Serializable {
         return this.products;
     }
 
+    public void setProducts(List<ProductDTO> products) {
+        this.products = products;
+    }
 
     @Override
     public boolean equals(Object o) {
@@ -114,6 +117,5 @@ public class OrderDTO implements Serializable {
     public int hashCode() {
         return Objects.hashCode(id);
     }
-    
-    
+
 }
