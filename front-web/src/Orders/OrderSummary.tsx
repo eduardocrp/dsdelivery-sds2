@@ -3,10 +3,11 @@ import { formatPrice } from "./helpers";
 
 type Props = {
 	selectedProducts: Product[];
+	onSubmit: () => void;
 }
 
 
-function OrderSummary ({ selectedProducts } : Props) {
+function OrderSummary ({ selectedProducts, onSubmit } : Props) {
 	const totalPrice = selectedProducts.reduce((sum,item) => {
 									return sum + item.price;
 								}, 0);
@@ -24,7 +25,9 @@ function OrderSummary ({ selectedProducts } : Props) {
 						VALOR TOTAL
 					</span>
 				</div>
-				<button className="order-summary-make-order">
+				<button 
+					className="order-summary-make-order"
+					onClick={onSubmit}>
 					FAZER PEDIDO
 				</button>
 			</div>

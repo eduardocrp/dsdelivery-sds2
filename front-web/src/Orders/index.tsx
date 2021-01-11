@@ -1,5 +1,6 @@
+import { toast } from 'react-toastify';
 import React, { useEffect, useState } from "react";
-import { fetchProducts } from "./api";
+import { fetchProducts, saveOrder } from "./api";
 import OrderLocation from "./OrderLocation";
 import OrderSummary from "./OrderSummary";
 import ProductsList from "./ProductsList";
@@ -31,7 +32,24 @@ function Orders() {
   	} else {
     		setSelectedProducts(previous => [...previous, product]);
   	}
-    } 
+    }
+
+   const handleSubmit = () => {
+  const productsIds = selectedProducts.map(({ id }) => ({ id }));
+  const payload = {
+    ...orderLocation!,
+    products: productsIds
+  }
+
+  saveOrder(payload).then((response) => {
+    toast.error(`Pedido enviado com sucesso! No ${response.data.id}`);
+    
+    setSelectedProducts([]);
+  })
+    .catch(() => {
+      toast.warning('Erro ao enviar pedido');
+    })
+}
 
     return (
 	<>
@@ -42,7 +60,9 @@ function Orders() {
 				onSelectProduct={handleSelectProduct}
 				selectedProducts={selectedProducts}/>
             		<OrderLocation onChangeLocation={location => setOrderLocation(location)}/>
-	    		<OrderSummary selectedProducts={selectedProducts}/>
+	    		<OrderSummary 
+				selectedProducts={selectedProducts}
+				onSubmit={handleSubmit}/>
         	</div>
 	</>
     )
