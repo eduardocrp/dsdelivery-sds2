@@ -17,7 +17,7 @@ export function timeDiffNow(moment: Date){
     const agora = new Date();
     const timeDiff = agora.getTime() - moment.getTime();
 
-    return Math.ceil(timeDiff / (1000 * 3600));
+    return Math.ceil(timeDiff / (1000 * 60));
 }
 
 
