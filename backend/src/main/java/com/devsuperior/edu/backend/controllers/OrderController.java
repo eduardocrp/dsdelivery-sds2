@@ -47,4 +47,11 @@ public class OrderController {
 
         return ResponseEntity.ok().body(dto);
     }
+
+    @PutMapping(path = "/{id}/initNavigation")
+    public ResponseEntity<OrderDTO> setInitNavigation(@PathVariable(value = "id") Long id) {
+        OrderDTO dto = service.setInitNavigation(id);
+
+        return ResponseEntity.ok().body(dto);
+    }
 }
